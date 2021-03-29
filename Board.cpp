@@ -61,7 +61,7 @@ namespace ariel
         {
             if (rows >= row() || column() <= columns + str.length())
             {
-                resizeVector(rows + 1, columns + str.length());
+                resizeVector(rows + 2, columns + str.length());
                 while (index < str.length())
                 {
                     this->_board[rows][columns++] = str[index++];
@@ -146,6 +146,10 @@ namespace ariel
     }
     void Board::show()
     {
+        if (row() == 0 && column() == 0)
+        {
+            cout << EMPTY_BOARD << endl;
+        }
         for (unsigned int i = this->_starting_row; i < this->_board.size(); i++)
         {
             cout << i << ": ";

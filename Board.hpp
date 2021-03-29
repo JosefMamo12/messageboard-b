@@ -5,7 +5,10 @@
 #include "Direction.hpp"
 
 using namespace std;
+
+const string EMPTY_BOARD = "THE BOARD IS EMPTY, THEREFORE NOTHING TO SHOW!!!";
 const string empty_string = "";
+
 
 namespace ariel
 {

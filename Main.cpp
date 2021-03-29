@@ -10,6 +10,13 @@ using namespace ariel;
 #include <string>
 using namespace std;
 
+const string POST_ROW_MESSAGE = "Please choose row which you would like to post: ";
+const string POST_COLU_MESSAGE = "Please choose column  which you would like to post: ";
+const string READ_ROW_MESSAGE = "Please choose row which you would like to read: ";
+const string READ_COLU_MESSAGE = "Please choose column which you would like to read: ";
+const string READ_STRING_LENGTH = "Please enter the length of the string you would like to see: ";
+const string ERROR_MESSAGE = "Pressed worng key returning to the menu";
+
 int main(int argc, char const *argv[])
 {
     u_int row, column, string_length = 0;
@@ -22,7 +29,7 @@ int main(int argc, char const *argv[])
     cout << "===============================================================================" << endl;
     cout << "Hello this is menu for the Message Board please choose one of the options below" << endl;
     cout << "===============================================================================" << endl;
-    cout << "===============================================================================a" << endl;
+    cout << "===============================================================================" << endl;
     cout << endl;
 
     do
@@ -37,53 +44,109 @@ int main(int argc, char const *argv[])
              << endl;
         cout << "5. Would you like to see the message board please press: S"
              << endl;
-        cout << "6. Press any other key to EXIT" << endl;
-        cin >> op;
+        cout << "6. To Exit press: E" << endl;
+
+        op = cin.get();
         switch (op)
         {
         case 'A':
-            cout << "Please choose row which you would like to post: " << endl;
-            cin >> row;
-            cout << "Please choose column which you would like to post: " << endl;
-            cin >> column;
+            cout << POST_ROW_MESSAGE << endl;
+            if (!(cin >> row))
+            {
+                cout << ERROR_MESSAGE << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                break;
+            }
+            cout << POST_COLU_MESSAGE << endl;
+            if (!(cin >> column))
+            {
+                cout << ERROR_MESSAGE << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                break;
+            }
             cin.ignore();
             cout << "Type your post here: " << endl;
             getline(cin, toPost);
             board.post(row, column, h, toPost);
             break;
         case 'B':
-            cout << "Please choose row which you would like to post: " << endl;
-            cin >> row;
-            cout << "Please choose column which you would like to post: " << endl;
-            cin >> column;
+            cout << POST_ROW_MESSAGE << endl;
+            if (!(cin >> row))
+            {
+                cout << ERROR_MESSAGE << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                break;
+            }
+            cout << POST_COLU_MESSAGE << endl;
+            if (!(cin >> column))
+            {
+                cout << ERROR_MESSAGE << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                break;
+            }
             cin.ignore();
             cout << "Type your post here: " << endl;
             getline(cin, toPost);
             board.post(row, column, v, toPost);
             break;
         case 'C':
-            cout << "Please choose row which you would like to start read: " << endl;
-            cin >> row;
-            cout << "Please choose column which you would like to start read: " << endl;
-            cin >> column;
-            cout << "Please enter the length of the string:" << endl;
+            cout << READ_ROW_MESSAGE << endl;
+            if (!(cin >> row))
+            {
+                cout << ERROR_MESSAGE << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                break;
+            }
+            cout << READ_COLU_MESSAGE << endl;
+            if (!(cin >> column))
+            {
+                cout << ERROR_MESSAGE << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                break;
+            }
+            cout << READ_STRING_LENGTH << endl;
             cin >> string_length;
             cout << board.read(row, column, h, string_length) << endl;
             break;
         case 'D':
-            cout << "Please choose row which you would like to start read: " << endl;
-            cin >> row;
-            cout << "Please choose column which you would like to start read: " << endl;
-            cin >> column;
-            cout << "Please enter the length of the string:" << endl;
+            cout << READ_ROW_MESSAGE << endl;
+            if (!(cin >> row))
+            {
+                cout << ERROR_MESSAGE << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                break;
+            }
+            cout << READ_COLU_MESSAGE << endl;
+            if (!(cin >> column))
+            {
+                cout << ERROR_MESSAGE << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                break;
+            }
+            cout << READ_STRING_LENGTH << endl;
             cin >> string_length;
             cout << board.read(row, column, v, string_length) << endl;
             break;
         case 'S':
+            cin.clear();
+            cin.ignore(10000, '\n');
             board.show();
             break;
-        default:
+        case 'E':
             flag = false;
+            break;
+        default:
+            cout << ERROR_MESSAGE << endl;
+            cin.clear();
+            cin.ignore(10000, '\n');
             break;
         }
     } while (flag);
